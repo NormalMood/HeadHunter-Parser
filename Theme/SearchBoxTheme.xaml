@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="{x:Type TextBox}"
+           x:Key="SearchBoxTheme">
+        <Setter Property="Background" Value="#353340" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Padding" Value="2 0 0 0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border Background="#007ACC">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                      Margin="2"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      Padding="{TemplateBinding Padding}"
+                                      FontSize="{TemplateBinding FontSize}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Background="{TemplateBinding Background}"
+                                      Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                        <TextBlock Text="Поиск"
+                                   IsHitTestVisible="False"
+                                   Margin="5 0 0 0"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   Background="Transparent"
+                                   Foreground="DarkGray">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text.IsEmpty, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBox}}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Visibility" Value="Hidden" />
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                   
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
